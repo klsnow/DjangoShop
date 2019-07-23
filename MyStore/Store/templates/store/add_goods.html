@@ -1,0 +1,42 @@
+{% extends "store/base.html" %}
+
+{% block title %}
+    添加商品
+{% endblock %}
+
+{% block content %}
+    <form class="form" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            {% csrf_token %}
+        </div>
+        <div class="form-group">
+            <input class="form-control form-control-user" placeholder="商品名称" type="text" name="goods_name">
+        </div>
+        <div class="form-group">
+            <input class="form-control form-control-user" placeholder="商品价格" type="text" name="goods_price">
+        </div>
+        <div class="form-group">
+            <input class="form-control form-control-user" placeholder="商品图片" type="file" name="goods_image">
+        </div>
+        <div class="form-group">
+            <input class="form-control form-control-user" placeholder="商品数量" type="text" name="goods_number">
+        </div>
+        <div class="form-group">
+            <input class="form-control form-control-user" placeholder="商品描述" type="text" name="goods_description">
+        </div>
+        <div class="form-group">
+            <input class="form-control form-control-user" placeholder="生产日期" type="text" name="goods_data">
+        </div>
+        <div class="form-group">
+            <input class="form-control form-control-user" placeholder="生产日期" type="hidden" name="goods_store" value="1">
+        </div>
+        <div class="form-group">
+            <input class="form-control form-control-user" placeholder="保质期" type="text" name="goods_safeData">
+        </div>
+
+        <div>
+            <input class="btn btn-primary btn-block" type="submit" value="注册">
+        </div>
+
+    </form>
+{% endblock %}

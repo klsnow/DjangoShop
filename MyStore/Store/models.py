@@ -28,7 +28,7 @@ class Store(models.Model):
     user_id = models.IntegerField(verbose_name="店铺主人")
     type = models.ManyToManyField(to=StoreType,verbose_name="店铺类型 ")
 
-# 商铺
+# 商品
 class Goods(models.Model):
     goods_name = models.CharField(max_length=32, verbose_name="商品名称")
     goods_price = models.FloatField( verbose_name="商品价格")
