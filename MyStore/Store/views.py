@@ -42,7 +42,7 @@ def register(request):
     if request.method == "POST":
         username = request.POST.get("username")
         password = request.POST.get("password")
-        print(username,password)
+        # print(username,password)
         if username and password:
             seller = Seller()
             seller.username = username
@@ -191,7 +191,36 @@ def goods_list(request):
     #{"page":page,"page_range":page_range,"keywords":keywords}
     return render(request,"store/goods_list.html",locals())
 
+def goods(request,goods_id):
+    goods_data = Goods.objects.filter(id=goods_id).first()
+    return render(request,"store/goods.html",locals())
+
+def update_goods(request,goods_id):
+    goods_data = Goods.objects.filter(id=goods_id).first()
+    if request.method =="POST":
+        goods_name = request.POST.get("goods_name")
+        goods_price = request.POST.get("goods_price")
+        goods_number = request.POST.get("goods_number")
+        goods_description = request.POST.get("goods_description")
+        goods_data = request.POST.get("goods_data")
+        goods_safeData = request.POST.get("goods_safeData")
+        goods_store = request.POST.get("goods_store")
+        goods_image= request.FILES.get("goods_image")
 
 
+        goods = Goods.objects.get(id=int(goods_id))
+        goods.goods_name = goods_name
+        goods.goods_price = goods_price
+        goods.goods_number = goods_number
+        goods.goods_description = goods_description
+        goods.goods_data = goods_data
+        goods.goods_safeData = goods_safeData
+        goods.goods_store = goods_store
+        if goods_image:
+            goods.goods_image = goods_image
+        goods.save()
+        return HttpResponseRedirect('/store/goods/%s/'%goods_id)
+        #多对多数据
+    return render(request, "store/update_goods.html", locals())
 
 # Create your views here.

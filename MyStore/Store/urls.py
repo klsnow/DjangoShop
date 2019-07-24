@@ -11,6 +11,8 @@ urlpatterns = [
     path('rs/',register_store),
     path('ag/',add_goods),
     path('gl/',goods_list),
+    re_path(r'^goods/(?P<goods_id>\d+)',goods),
+    re_path(r'update_goods/(?P<goods_id>\d+)',update_goods),
 
 ]
 urlpatterns += [
