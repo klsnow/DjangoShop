@@ -7,7 +7,6 @@ urlpatterns = [
     path('login/',login),
     path('index/',index),
     re_path('^$',login),
-    path('bt/',button),
     path('rs/',register_store),
     path('ag/',add_goods),
     path('gl/',goods_list),

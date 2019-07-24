@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block content %}
-    <form action="" method="post" class="form" enctype=" multipart/form-data">
+    <form  method="post" class="form" enctype="multipart/form-data">
     {% csrf_token %}
     <table class="table" >
         <tr>
@@ -67,7 +67,7 @@
         </tr>
     <tr>
         <td colspan="5">
-            <input type="submit" value="保存修改" class="btn btn-primary btn-block" >
+            <input type="submit" value="保存修改" class="btn btn-primary btn-block" href="#" >
         </td>
     </tr>
     </table>
