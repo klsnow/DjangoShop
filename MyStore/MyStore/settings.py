@@ -25,7 +25,7 @@ SECRET_KEY = '6x5(-#-_%4hz@*w1b(kde%rjf@m8^%n+3_2=z!z!=-#!4m+-!v'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'Store.apps.StoreConfig',
     'ckeditor',
     'ckeditor_uploader',
+    'Buyer',
 ]
 
 MIDDLEWARE = [

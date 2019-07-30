@@ -1,0 +1,26 @@
+{% extends "store/base.html" %}
+
+{% block title %}
+    添加商品
+{% endblock %}
+
+{% block content %}
+    <form class="form" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            {% csrf_token %}
+        </div>
+        <div class="form-group">
+            <input class="form-control form-control-user" placeholder="商品类型名称" type="text" name="name">
+        </div>
+        <div class="form-group">
+            <input class="form-control form-control-user" placeholder="商品类型描述" type="text" name="description">
+        </div>
+        <div class="form-group">
+            <input class="form-control form-control-user" placeholder="商品类型图片" type="file" name="picture">
+        </div>
+        <div>
+            <input class="btn btn-primary btn-block" type="submit" value="添加">
+        </div>
+
+    </form>
+{% endblock %}

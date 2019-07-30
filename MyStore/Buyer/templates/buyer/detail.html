@@ -1,0 +1,157 @@
+{% extends 'buyer/base.html' %}
+
+
+
+{% block content %}
+
+
+	<div class="navbar_con">
+		<div class="navbar clearfix">
+			<div class="subnav_con fl">
+				<h1>全部商品分类</h1>	
+				<span></span>			
+{#				<ul class="subnav">#}
+{#					<li><a href="#" class="fruit">新鲜水果</a></li>#}
+{#					<li><a href="#" class="seafood">海鲜水产</a></li>#}
+{#					<li><a href="#" class="meet">猪牛羊肉</a></li>#}
+{#					<li><a href="#" class="egg">禽类蛋品</a></li>#}
+{#					<li><a href="#" class="vegetables">新鲜蔬菜</a></li>#}
+{#					<li><a href="#" class="ice">速冻食品</a></li>#}
+{#				</ul>#}
+			</div>
+			<ul class="navlist fl">
+				<li><a href="">首页</a></li>
+				<li class="interval">|</li>
+				<li><a href="">手机生鲜</a></li>
+				<li class="interval">|</li>
+				<li><a href="">抽奖</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="breadcrumb">
+		<a href="#">全部分类</a>
+		<span>></span>
+		<a href="#">新鲜水果</a>
+		<span>></span>
+		<a href="#">商品详情</a>
+	</div>
+
+	<div class="goods_detail_con clearfix">
+		<div class="goods_detail_pic fl" ><img style="height: 350px;width: 350px" src="/static/{{ goods.goods_image }}"></div>
+
+		<div class="goods_detail_list fr">
+			<h3>{{ goods.goods_name }}</h3>
+			<p>{{ goods.goods_description }}</p>
+			<div class="prize_bar">
+				<span class="show_pirze">¥<em id="price">{{ goods.goods_price }}</em></span>
+				<span class="show_unit" >单  位：{{ goods.goods_price }}元/g</span>
+			</div>
+{#            <form action=""></form>#}
+                <form action="/buyer/po/" method="post">
+                {% csrf_token %}
+			<div class="goods_num clearfix">
+				<div class="num_name fl">数 量:</div>
+				<div class="num_add fl">
+					<input type="text" id="count" name="count" class="num_show fl" value="1">
+                    <input type="hidden" id="goods_id" name="goods_id" class="num_show fl" value="{{ goods.id}}">
+					<a href="javascript:;" onclick="changeType('add')" class="add fr">+</a>
+					<a href="javascript:;" onclick="changeType('minus')" class="minus fr">-</a>
+				</div> 
+			</div>
+			<div class="total">总价：<em id="total">{{ goods.goods_price }}</em><em>元</em></div>
+			<div class="operate_btn">
+				<input href="javascript:;" class="buy_btn" type="submit" value="立即购买">
+				<a href="#" class="add_cart" id="add_cart" >加入购物车</a>
+			</div>
+                </form>
+		</div>
+	</div>
+
+	<div class="main_wrap clearfix">
+		<div class="l_wrap fl clearfix">
+			<div class="new_goods">
+				<h3>新品推荐</h3>
+				<ul>
+					<li>
+						<a href="#"><img src="/static/buyer/images/goods/goods001.jpg"></a>
+						<h4><a href="#">进口柠檬</a></h4>
+						<div class="prize">￥3.90</div>
+					</li>
+					<li>
+						<a href="#"><img src="/static/buyer/images/goods/goods002.jpg"></a>
+						<h4><a href="#">玫瑰香葡萄</a></h4>
+						<div class="prize">￥16.80</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="r_wrap fr clearfix">
+			<ul class="detail_tab clearfix">
+				<li class="active">商品介绍</li>
+				<li>评论</li>
+			</ul>
+
+			<div class="tab_content">
+				<dl>
+					<dt>商品详情：</dt>
+					<dd>{{ goods.goods_description }} </dd>
+				</dl>
+			</div>
+
+		</div>
+	</div>
+
+	{% endblock %}
+{% block script %}
+    <script src="/static/buyer/js/jquery-1.12.4.min.js"></script>
+   
+    <script>
+        function changeType(ty) {
+           var value = $("#count").val();
+
+           if(ty == 'add'){
+               $("#count").val(++value)
+           }else {
+               if(value<=1){
+                   $("#count").val(1)
+               }else {
+                   $("#count").val(--value)
+               }
+           }
+           var price = $("#price").text();
+           var total_price = price * value;
+           $("#total").text(total_price);
+        }
+
+        $("#add_cart").click(
+
+            function () {
+
+                var count = $("#count").val();
+                var goods_id = $("#goods_id").val();
+                var senData = {
+                    "count":count,
+                    "goods_id":goods_id,
+                    "csrfmiddlewaretoken":"{{ csrf_token }}"
+                };
+                console.log(senData)
+                var url = "/buyer/add_cart/";
+                $.ajax(
+                    {
+                        url:url,
+                        type:"post",
+                        data:senData,
+                        success:function (data) {
+                            alert("添加成功")
+                        },
+                        error:function (error) {
+                            console.log(error)
+                        }
+                    }
+                )
+            }
+        )
+    </script>
+{% endblock %}

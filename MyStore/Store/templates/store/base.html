@@ -35,7 +35,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">老边管理平台</div>
+        <div class="sidebar-brand-text mx-3">管理平台</div>
       </a>
 
       <!-- Divider -->
@@ -67,10 +67,27 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">商品管理:</h6>
             <a class="collapse-item" href="/store/ag/">添加商品</a>
-            <a class="collapse-item" href="/store/gl/">商品列表</a>
+            <a class="collapse-item" href="/store/gl/up/">在售商品列表</a>
+            <a class="collapse-item" href="/store/gl/down/">下架商品列表</a>
           </div>
         </div>
       </li>
+
+        <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>商品类型管理</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">商品类型管理:</h6>
+            <a class="collapse-item" href="/store/ags/">商品类型添加</a>
+            <a class="collapse-item" href="/store/gsl/">商品类型列表</a>
+          </div>
+        </div>
+      </li>
+
+
     </ul>
   {% else %}
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
@@ -95,6 +112,7 @@
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
+
     <div id="content-wrapper" class="d-flex flex-column">
 
       <!-- Main Content -->
@@ -271,7 +289,8 @@
                   登录日志
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+{#                <a class="dropdown-item" href="/Store/logout/" data-toggle="modal" data-target="#logoutModal">#}
+                <a class="dropdown-item" href="/store/logout/">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   退出
                 </a>

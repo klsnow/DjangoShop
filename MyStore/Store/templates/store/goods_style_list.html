@@ -1,0 +1,38 @@
+{% extends 'store/base.html' %}
+{% block title %}
+    商品列表
+{% endblock %}
+{% block label %}
+    <a href="/store/ags/" class="btn btn-warning">添加类型</a>
+{% endblock %}
+{% block content %}
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>商品类型名称</th>
+                <th>商品类型描述</th>
+                <th>商品类型图片</th>
+            </tr>
+
+        </thead>
+        <tbody>
+            {% for goods in goods_style %}
+                <tr>
+                    <td>{{ goods.name }}</td>
+                    <td>{{goods.description}}</td>
+                    <td><img style="height: 70px;width: 70px;" src="/static/{{goods.picture }}" alt=""></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{#    <div class="dataTables_paginate paging_simple_numbers">#}
+{#        <ul class="pagination">#}
+{#            {% for p in page_range %}#}
+{#                <li class="paginate_button page_item">#}
+{#                    <a href="?page_num={{ p }}" class="page-link">{{ p }}</a>#}
+{#                </li>#}
+{#            {% endfor %}#}
+{#        </ul>#}
+{#    </div>#}
+
+{% endblock %}

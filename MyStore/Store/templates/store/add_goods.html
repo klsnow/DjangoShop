@@ -28,6 +28,13 @@
             <input class="form-control form-control-user" placeholder="生产日期" type="text" name="goods_data">
         </div>
         <div class="form-group">
+            <select name="goods_type" class="form-control form-control-user" id="">
+            {% for goods_type in goods_style_list %}
+                <option value="{{ goods_type.id }}">{{ goods_type.name }}</option>
+            {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
             <input class="form-control form-control-user"  type="hidden" name="goods_store" value="{{ request.COOKIES.has_store}}">
         </div>
         <div class="form-group">
@@ -35,7 +42,7 @@
         </div>
 
         <div>
-            <input class="btn btn-primary btn-block" type="submit" value="注册">
+            <input class="btn btn-primary btn-block" type="submit" value="添加">
         </div>
 
     </form>

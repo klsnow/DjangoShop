@@ -1,0 +1,79 @@
+{% extends "buyer/base.html" %}
+
+{% block title%}
+ <title>首页</title>
+{% endblock %}
+
+{% block style %}
+    <script type="text/javascript" src="/static/buyer/js/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="/static/buyer/js/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/static/buyer/js/slide.js"></script>
+{% endblock %}
+{% block content %}
+
+	<div class="navbar_con">
+		<div class="navbar">
+			<h1 class="fl">全部商品分类</h1>
+			<ul class="navlist fl">
+				<li><a href="">首页</a></li>
+				<li class="interval">|</li>
+				<li><a href="">手机生鲜</a></li>
+				<li class="interval">|</li>
+				<li><a href="">抽奖</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="center_con clearfix">
+		<ul class="subnav fl">
+            {% for goods_type in goods_type_list %}
+			<li><a href="" class="fruit">{{ goods_type.name }}</a></li>
+			{% endfor %}
+		</ul>
+		<div class="slide fl">
+			<ul class="slide_pics">
+				<li><img src="/static/buyer/images/slide.jpg" alt="幻灯片"></li>
+				<li><img src="/static/buyer/images/slide02.jpg" alt="幻灯片"></li>
+				<li><img src="/static/buyer/images/slide03.jpg" alt="幻灯片"></li>
+				<li><img src="/static/buyer/images/slide04.jpg" alt="幻灯片"></li>
+			</ul>
+			<div class="prev"></div>
+			<div class="next"></div>
+			<ul class="points"></ul>
+		</div>
+		<div class="adv fl">
+			<a href="#"><img src="/static/buyer/images/adv01.jpg"></a>
+			<a href="#"><img src="/static/buyer/images/adv02.jpg"></a>
+		</div>
+	</div>
+    {% for goods_type in goods_type_list %}
+	<div class="list_model">
+		<div class="list_title clearfix">
+			<h3 class="fl" id="model01">{{ goods_type.name }}</h3>
+			<div class="subtitle fl">
+				<span>|</span>
+				<a href="#"></a>
+				<a href="#"></a>
+				<a href="#"></a>
+			</div>
+			<a href="/buyer/gl/?type_id={{ goods_type.id }}&type_name={{ goods_type.name }}" class="goods_more fr" id="fruit_more">查看更多 </a>
+		</div>
+
+		<div class="goods_con clearfix">
+			<div class="goods_banner fl"><img src="/static/{{ goods_type.picture }}"></div>
+
+        <ul class="goods_list fl">
+                {% for goods in goods_type.goods_set.all %}
+				<li>
+					<h4><a href="#">{{ goods.goods_name }}</a></h4>
+					<a href=""><img src="/static/{{ goods.goods_image }}"></a>
+					<div class="prize">{{ goods.goods_price }}</div>
+				</li>
+                {% endfor %}
+			</ul>
+		</div>
+	</div>
+{% endfor %}
+
+
+{% endblock %}

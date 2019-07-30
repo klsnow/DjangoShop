@@ -26,8 +26,12 @@
                     <td><input type="text" value="{{goods.goods_number }}"></td>
                     <td>{{ goods.goods_data | date:'Y-m-d'}}</td>
                     <td>{{ goods.goods_safeData}}</td>
-                    <td><a href="#" class="btn btn-danger">下架</a></td>
-                    <td><a href="#" class="btn btn-primary">销毁</a></td>
+                    {% ifequal state "up" %}
+                        <td><a href="/store/set_goods/down/?id={{ goods.id }}" class="btn btn-danger">下架</a></td>
+                    {% else %}
+                        <td><a href="/store/set_goods/up/?id={{ goods.id }}" class="btn btn-danger">上架</a></td>
+                    {% endifequal %}
+                    <td><a href="/store/set_goods/delete/?id={{ goods.id }}" class="btn btn-primary">销毁</a></td>
                 </tr>
             {% endfor %}
         </tbody>
